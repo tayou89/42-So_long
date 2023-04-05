@@ -21,13 +21,13 @@ fclean : clean
 re : fclean all
 
 $(NAME) : $(LIBFT) $(OBJ)
-	$(CC) $(CCFLAGS) -o $(NAME) $^
+	$(CC) $(CCFLAGS) -L./mlx -lmlx -framework OpenGL -framework Appkit -lz -o $(NAME) $^
 
 $(LIBFT) : 
 	make bonus -C $(LIBFT_DIR) all
 			   
 %.o : %.c
-	$(CC) $(CCFLAGS) -o $@ -c $<
+	$(CC) $(CCFLAGS) -I./mlx -o $@ -c $<
 
 .PHONY : all clean fclean re libft
 
