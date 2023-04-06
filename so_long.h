@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 00:05:51 by tayou             #+#    #+#             */
-/*   Updated: 2023/04/06 18:29:52 by tayou            ###   ########.fr       */
+/*   Created: 2023/04/06 12:35:40 by tayou             #+#    #+#             */
+/*   Updated: 2023/04/06 12:37:31 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef SO_LONG_H
+# define SO_LONG_H
 
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
+# include <fcntl.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include "./libft/libft.h"
+# include "./mlx/mlx.h"
 
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	return (i);
-}
+#endif
