@@ -6,12 +6,24 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 22:22:33 by tayou             #+#    #+#             */
-/*   Updated: 2023/04/06 21:59:07 by tayou            ###   ########.fr       */
+/*   Updated: 2023/04/07 10:57:23 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+int	main(void)
+{
+	void	*mlx_ptr;
+	void	*win_ptr;
+
+	mlx_ptr = mlx_init();
+	win_ptr = mlx_new_window(mlx_ptr, 1920, 1080, "Hello World!");
+	mlx_loop(mlx_ptr);
+	return (0);
+}
+
+/*
 int	main(int argc, char **argv)
 {
 	char	**map;
@@ -93,4 +105,4 @@ void	check_map_validation(int argc, char **argv)
 
 }	
 
-
+*/
