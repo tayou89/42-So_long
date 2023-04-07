@@ -6,31 +6,34 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 22:22:33 by tayou             #+#    #+#             */
-/*   Updated: 2023/04/07 10:57:23 by tayou            ###   ########.fr       */
+/*   Updated: 2023/04/07 15:32:01 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(void)
-{
-	void	*mlx_ptr;
-	void	*win_ptr;
+void	check_argc(int argc);
+char	**get_map(char *map_file_name);
+int		get_fd(char	*map_file_name);
+int		get_line_count(int fd);
+char	**malloc_map(int line_count);
+char	**fill_map(char **map, int fd);
 
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, 1920, 1080, "Hello World!");
-	mlx_loop(mlx_ptr);
-	return (0);
-}
-
-/*
 int	main(int argc, char **argv)
 {
 	char	**map;
+	int		i;
 
 	check_argc(argc);
 	map = get_map(argv[1]);
-	check_map_validation(argc, argv);
+	i = 0;
+	while (map[i] != (void *) 0)
+	{
+		ft_printf("map[%d]: %s\n", i, map[i]);
+		i++;
+	}
+//	check_map_validation(argc, argv);
+	return (0);
 }
 
 void	check_argc(int argc)
@@ -48,9 +51,8 @@ char	**get_map(char *map_file_name)
 	fd = get_fd(map_file_name);
 	line_count = get_line_count(fd);
 	map = malloc_map(line_count);
-	fill_map(map, fd);
-
-
+	map = fill_map(map, fd);
+	return (map);
 }
 
 int	get_fd(char	*map_file_name)
@@ -63,28 +65,6 @@ int	get_fd(char	*map_file_name)
 	return (fd);
 }
 
-char	**malloc_map(int line_count)
-{
-	char	**map;
-
-	map = (char **) malloc(sizeof(char *) * (line_count + 1));
-	if (map == (void **) 0)
-		exit(1);
-	map[line_count] = '\0';
-	return (map);
-}
-
-void	fill_map(char **map, int fd)
-{
-	char	*line;
-	int		i;
-
-	line = get_next_line(fd);
-	while (line != (void *) 0)
-	{
-		map[i] = 
-
-
 int	get_line_count(int fd)
 {
 	int	line_count;
@@ -95,6 +75,38 @@ int	get_line_count(int fd)
 	return (line_count);
 }
 
+char	**malloc_map(int line_count)
+{
+	char	**map;
+
+	map = (char **) malloc(sizeof(char *) * (line_count + 1));
+	if (map == (void *) 0)
+		exit(1);
+	map[line_count] = (void *) 0;
+	return (map);
+}
+
+char	**fill_map(char **map, int fd)
+{
+	char	*line;
+	int		line_size;
+	int		i;
+
+	i = 0;
+	line = get_next_line(fd);
+	while (line != (void *) 0)
+	{
+		line_size = ft_strlen(line);
+		map[i] = (char *) malloc(sizeof(char) * line_size + 1);
+		ft_strlcpy(map[i], line, line_size + 1);
+		free(line);
+		i++;
+		line = get_next_line(fd);
+	}
+	return(map);
+}
+
+/*
 void	check_map_validation(int argc, char **argv)
 {
 	char	**map;
@@ -103,6 +115,5 @@ void	check_map_validation(int argc, char **argv)
 		exit(0);
 	
 
-}	
-
+}
 */
