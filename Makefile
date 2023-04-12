@@ -5,7 +5,8 @@ RM = rm
 RMFLAGS = -rf
 LIBFT = ./libft/libft.a
 LIBFT_DIR = ./libft
-SRC = so_long.c
+SRC = so_long.c \
+	  free_2d_string_array.c
 OBJ = $(SRC:.c=.o)
 
 all : $(NAME)
@@ -21,7 +22,7 @@ fclean : clean
 re : fclean all
 
 $(NAME) : $(LIBFT) $(OBJ)
-	$(CC) $(CCFLAGS) -L./mlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) $^ -g -fsanitize=address
+	$(CC) $(CCFLAGS) -L./mlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) $^
 
 $(LIBFT) : 
 	make bonus -C $(LIBFT_DIR) all

@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 22:22:33 by tayou             #+#    #+#             */
-/*   Updated: 2023/04/07 15:32:01 by tayou            ###   ########.fr       */
+/*   Updated: 2023/04/12 10:42:50 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,11 @@ int	main(int argc, char **argv)
 	i = 0;
 	while (map[i] != (void *) 0)
 	{
-		ft_printf("map[%d]: %s\n", i, map[i]);
+		ft_printf("map[%d]: %s", i, map[i]);
 		i++;
 	}
-//	check_map_validation(argc, argv);
+	free_2d_string_array(map);
+	system("leaks so_long");
 	return (0);
 }
 
@@ -51,6 +52,7 @@ char	**get_map(char *map_file_name)
 	fd = get_fd(map_file_name);
 	line_count = get_line_count(fd);
 	map = malloc_map(line_count);
+	fd = get_fd(map_file_name);
 	map = fill_map(map, fd);
 	return (map);
 }
@@ -67,11 +69,18 @@ int	get_fd(char	*map_file_name)
 
 int	get_line_count(int fd)
 {
-	int	line_count;
+	int		line_count;
+	char	*line;
 
 	line_count = 0;
-	while (get_next_line(fd) != (void *) 0)
+	line = get_next_line(fd);
+	while (line != (void *) 0)
+	{
 		line_count++;
+		free(line);
+		line = (void *) 0;
+		line = get_next_line(fd);
+	}
 	return (line_count);
 }
 
@@ -89,17 +98,13 @@ char	**malloc_map(int line_count)
 char	**fill_map(char **map, int fd)
 {
 	char	*line;
-	int		line_size;
 	int		i;
 
 	i = 0;
 	line = get_next_line(fd);
 	while (line != (void *) 0)
 	{
-		line_size = ft_strlen(line);
-		map[i] = (char *) malloc(sizeof(char) * line_size + 1);
-		ft_strlcpy(map[i], line, line_size + 1);
-		free(line);
+		map[i] = line;
 		i++;
 		line = get_next_line(fd);
 	}

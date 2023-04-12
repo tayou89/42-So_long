@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   free_2d_string_array.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/06 12:35:40 by tayou             #+#    #+#             */
-/*   Updated: 2023/04/12 10:35:36 by tayou            ###   ########.fr       */
+/*   Created: 2023/04/12 10:35:06 by tayou             #+#    #+#             */
+/*   Updated: 2023/04/12 10:35:57 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "so_long.h"
 
-# include <fcntl.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include "./libft/libft.h"
-# include "./mlx/mlx.h"
+void	free_2d_string_array(char **string)
+{
+	int	i;
 
-void	free_2d_string_array(char **string);
-
-#endif
+	i = 0;
+	while (string[i] != (void *) 0)
+	{
+		free(string[i]);
+		i++;
+	}
+	free(string);
+}
