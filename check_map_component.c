@@ -5,122 +5,90 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/12 15:14:04 by tayou             #+#    #+#             */
-/*   Updated: 2023/04/24 10:51:13 by tayou            ###   ########.fr       */
+/*   Created: 2023/05/03 12:45:35 by tayou             #+#    #+#             */
+/*   Updated: 2023/05/07 18:52:08 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	check_if_has_other_character(char **map);
-int	get_exit_count(char **map);
-int	get_collectible_count(char **map);
-int	get_player_count(char **map);
+void	initialize_component_count(t_data *game);
+void	get_component_count(t_data *game);
+int		check_if_has_other_character(t_data *game);
 
-int	check_map_component(char **map, t_data *game)
+int	check_map_component(t_data *game)
 {
-	if (check_if_has_other_character(map) == 1)
-		return (1);
-	game->exit_count = get_exit_count(map);
-	game->collectible_count = get_collectible_count(map);
-	game->player_count = get_player_count(map);
-	if (game->exit_count != 1 || game->collectible_count < 1
-		|| game->player_count != 1)
-		return (1);
-	else
-		return (0);
+	game->error_number = 3;
+	initialize_component_count(game);
+	get_component_count(game);
+	if (game->count.exit != 1 || game->count.collectible < 1
+		|| game->count.player != 1)
+		return (FALSE);
+	if (check_if_has_other_character(game) == FALSE)
+		return (FALSE);
+	return (TRUE);
 }
 
-int	get_exit_count(char **map)
+void	initialize_component_count(t_data *game)
 {
-	int		exit_count;
-	char	exit_character;
+	game->component.wall = '1';
+	game->component.empty_space = '0';
+	game->component.collectible = 'C';
+	game->component.exit = 'E';
+	game->component.player = 'P';
+	game->count.exit = 0;
+	game->count.collectible = 0;
+	game->count.player = 0;
+}
+
+void	get_component_count(t_data *game)
+{
+	char	**map;
 	int		i;
 	int		j;
 
-	exit_count = 0;
-	exit_character = 'E';
+	map = game->map.array;
 	i = 0;
 	while (map[i] != (void *) 0)
 	{
 		j = 0;
 		while (map[i][j] != '\0')
 		{
-			if (map[i][j] == exit_character)
-				exit_count++;
+			if (map[i][j] == game->component.exit)
+				game->count.exit++;
+			else if (map[i][j] == game->component.collectible)
+				game->count.collectible++;
+			else if (map[i][j] == game->component.player)
+				game->count.player++;
 			j++;
 		}
 		i++;
 	}
-	return (exit_count);
 }
 
-int	get_collectible_count(char **map)
+int	check_if_has_other_character(t_data *game)
 {
-	int		collectible_count;
-	char	collectible_character;
+	char	**map;
 	int		i;
 	int		j;
 
-	collectible_count = 0;
-	collectible_character = 'C';
+	map = game->map.array;
 	i = 0;
 	while (map[i] != (void *) 0)
 	{
 		j = 0;
 		while (map[i][j] != '\0')
 		{
-			if (map[i][j] == collectible_character)
-				collectible_count++;
-			j++;
-		}
-		i++;
-	}
-	return (collectible_count);
-}
-
-int	get_player_count(char **map)
-{
-	int		player_count;
-	char	player_character;
-	int		i;
-	int		j;
-
-	player_count = 0;
-	player_character = 'P';
-	i = 0;
-	while (map[i] != (void *) 0)
-	{
-		j = 0;
-		while (map[i][j] != '\0')
-		{
-			if (map[i][j] == player_character)
-				player_count++;
-			j++;
-		}
-		i++;
-	}
-	return (player_count);
-}
-
-int	check_if_has_other_character(char **map)
-{
-	int	i;
-	int	j;
-	
-	i = 0;
-	while (map[i] != (void *) 0)
-	{
-		j = 0;
-		while (map[i][j] != '\0')
-		{
-			if (map[i][j] == '0' || map[i][j] == '1' || map[i][j] == 'C'
-				|| map[i][j] == 'E' || map[i][j] == 'P')
+			if (map[i][j] == game->component.empty_space
+				|| map[i][j] == game->component.wall
+				|| map[i][j] == game->component.collectible
+				|| map[i][j] == game->component.exit
+				|| map[i][j] == game->component.player)
 				j++;
 			else
-				return (1);
+				return (FALSE);
 		}
 		i++;
 	}
-	return (0);
+	return (TRUE);
 }

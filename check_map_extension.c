@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/14 23:29:07 by tayou             #+#    #+#             */
-/*   Updated: 2023/04/20 21:18:27 by tayou            ###   ########.fr       */
+/*   Created: 2023/05/03 12:41:36 by tayou             #+#    #+#             */
+/*   Updated: 2023/05/10 20:16:45 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,16 @@ char	*get_extension(char *map_file_path);
 
 void	check_map_extension(t_data *game)
 {
-	char	*map_extension;
 	char	*right_extension;
 
 	right_extension = ".ber";
-	map_extension = get_extension(game->map_file_path);
-	if (ft_strncmp(right_extension, map_extension, 4) != 0)
+	game->map.extension = get_extension(game->map.file_path);
+	if (ft_strncmp(right_extension, game->map.extension, 4) != 0)
+	{
+		ft_printf("Error\n");
+		ft_printf("Map file has wrong extension.\n");
 		exit(0);
+	}
 }
 
 char	*get_extension(char *map_file_path)

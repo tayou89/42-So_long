@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   finish_game_after_free_bonus.c                     :+:      :+:    :+:   */
+/*   when_click_x_button_on_window.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/23 22:31:02 by tayou             #+#    #+#             */
-/*   Updated: 2023/05/03 18:53:31 by tayou            ###   ########.fr       */
+/*   Created: 2023/05/03 13:53:55 by tayou             #+#    #+#             */
+/*   Updated: 2023/05/03 13:54:04 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "so_long.h"
 
-int	finish_game_after_free(t_data *game)
+void	when_click_x_button_on_window(t_data *game)
 {
-	free_mallocated_data(game);
-	ft_printf("Thank You For Playing!\n");
-	exit(0);
-	return (0);
+	void	*win;
+
+	win = game->window.ptr;
+	mlx_hook(win, EVENT_ON_DESTROY, 0, &finish_game_after_free, game);
 }

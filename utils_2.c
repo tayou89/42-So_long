@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_linked_list_map.c                            :+:      :+:    :+:   */
+/*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/16 22:53:52 by tayou             #+#    #+#             */
-/*   Updated: 2023/04/16 22:58:05 by tayou            ###   ########.fr       */
+/*   Created: 2023/05/12 23:26:01 by tayou             #+#    #+#             */
+/*   Updated: 2023/05/14 18:44:00 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	print_linked_list_map(t_node *map)
+int	count_line_in_string(char *string, int read_size)
 {
-	t_node	*left_node;
+	int	count;
+	int	i;
 
-	while (map != (void *) 0)
+	if (string == (void *) 0)
+		return (0);
+	count = 0;
+	i = 0;
+	while (i < read_size)
 	{
-		left_node = map;
-		while (map != (void *) 0)
-		{
-			ft_printf("%c", map->accessibility);
-			map = map->right;
-		}
-		ft_printf("\n");
-		map = left_node->down;
+		if (string[i] == '\n' || string[i] == '\0')
+			count++;
+		i++;
 	}
+	return (count);
 }

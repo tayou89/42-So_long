@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 22:28:54 by tayou             #+#    #+#             */
-/*   Updated: 2023/04/26 12:46:42 by tayou            ###   ########.fr       */
+/*   Updated: 2023/05/07 19:07:37 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,33 @@
 
 void	initialize_component_count(t_data *game);
 void	get_component_count(t_data *game);
-int		check_if_has_other_character(char **map);
+int		check_if_has_other_character(t_data *game);
 
-int	check_map_component(char **map, t_data *game)
+int	check_map_component(t_data *game)
 {
+	game->error_number = 3;
 	initialize_component_count(game);
 	get_component_count(game);
-	if (game->exit_count != 1 || game->collectible_count < 1
-		|| game->player_count != 1 || game->enemy_count < 1)
-		return (1);
-	if (check_if_has_other_character(map) == 1)
-		return (1);
-	return (0);
+	if (game->count.exit != 1 || game->count.collectible < 1
+		|| game->count.player != 1 || game->count.enemy < 1)
+		return (FALSE);
+	if (check_if_has_other_character(game) == FALSE)
+		return (FALSE);
+	return (TRUE);
 }
 
 void	initialize_component_count(t_data *game)
 {
-	game->exit_count = 0;
-	game->collectible_count = 0;
-	game->player_count = 0;
-	game->enemy_count = 0;
+	game->component.wall = '1';
+	game->component.empty_space = '0';
+	game->component.collectible = 'C';
+	game->component.exit = 'E';
+	game->component.player = 'P';
+	game->component.enemy = 'B';
+	game->count.exit = 0;
+	game->count.collectible = 0;
+	game->count.player = 0;
+	game->count.enemy = 0;
 }
 
 void	get_component_count(t_data *game)
@@ -42,45 +49,51 @@ void	get_component_count(t_data *game)
 	int		i;
 	int		j;
 
-	map = game->array_map;
+	map = game->map.array;
 	i = 0;
 	while (map[i] != (void *) 0)
 	{
 		j = 0;
 		while (map[i][j] != '\0')
 		{
-			if (map[i][j] == 'E')
-				game->exit_count++;
-			else if (map[i][j] == 'C')
-				game->collectible_count++;
-			else if (map[i][j] == 'P')
-				game->player_count++;
-			else if (map[i][j] == 'B')
-				game->enemy_count++;
+			if (map[i][j] == game->component.exit)
+				game->count.exit++;
+			else if (map[i][j] == game->component.collectible)
+				game->count.collectible++;
+			else if (map[i][j] == game->component.player)
+				game->count.player++;
+			else if (map[i][j] == game->component.enemy)
+				game->count.enemy++;
 			j++;
 		}
 		i++;
 	}
 }
 
-int	check_if_has_other_character(char **map)
+int	check_if_has_other_character(t_data *game)
 {
-	int	i;
-	int	j;
-	
+	char	**map;
+	int		i;
+	int		j;
+
+	map = game->map.array;
 	i = 0;
 	while (map[i] != (void *) 0)
 	{
 		j = 0;
 		while (map[i][j] != '\0')
 		{
-			if (map[i][j] == '0' || map[i][j] == '1' || map[i][j] == 'C'
-				|| map[i][j] == 'E' || map[i][j] == 'P' || map[i][j] == 'B')
+			if (map[i][j] == game->component.empty_space
+				|| map[i][j] == game->component.wall
+				|| map[i][j] == game->component.collectible
+				|| map[i][j] == game->component.exit
+				|| map[i][j] == game->component.player
+				|| map[i][j] == game->component.enemy)
 				j++;
 			else
-				return (1);
+				return (FALSE);
 		}
 		i++;
 	}
-	return (0);
+	return (TRUE);
 }

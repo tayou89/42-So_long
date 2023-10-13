@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/12 12:42:21 by tayou             #+#    #+#             */
-/*   Updated: 2023/04/23 16:21:52 by tayou            ###   ########.fr       */
+/*   Created: 2023/05/12 18:34:19 by tayou             #+#    #+#             */
+/*   Updated: 2023/05/12 18:34:21 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	get_component_location(char component, t_data *game)
 	int		i;
 	int		j;
 
-	map = game->array_map;
+	map = game->map.array;
 	i = 0;
 	while (map[i] != (void *) 0)
 	{
@@ -71,8 +71,8 @@ void	get_component_location(char component, t_data *game)
 		{
 			if (map[i][j] == component)
 			{
-				game->component_x = j;
-				game->component_y = i;
+				game->component.map_x = j;
+				game->component.map_y = i;
 				return ;
 			}
 			j++;

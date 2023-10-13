@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 22:27:17 by tayou             #+#    #+#             */
-/*   Updated: 2023/04/16 23:23:08 by tayou            ###   ########.fr       */
+/*   Updated: 2023/05/07 17:22:18 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_node	*get_new_node(char c)
 {
-	t_node *new_node;
+	t_node	*new_node;
 
 	new_node = (t_node *) malloc(sizeof(t_node));
 	if (new_node == (void *) 0)
@@ -63,7 +63,7 @@ t_node	*link_node_to_next(t_node *list, t_node *node_to_link)
 	return (list_head);
 }
 
-t_node *find_component_node(t_node *map, char c)
+t_node	*find_component_node(t_node *map, char c)
 {
 	t_node	*component_node;
 	t_node	*down_line;
@@ -80,7 +80,7 @@ t_node *find_component_node(t_node *map, char c)
 				component_node = map;
 				return (component_node);
 			}
-			else	
+			else
 				map = map->right;
 		}
 		map = down_line;
