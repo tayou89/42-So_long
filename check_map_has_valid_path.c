@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 12:47:15 by tayou             #+#    #+#             */
-/*   Updated: 2023/05/07 18:52:32 by tayou            ###   ########.fr       */
+/*   Updated: 2023/05/03 18:27:23 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	check_map_has_valid_path(t_data *game)
 {
 	char	**map;
 
-	game->error_number = 4;
 	map = game->map.array;
 	game->map.linked_list = get_linked_list_map(map);
 	if (game->map.linked_list == (void *) 0)

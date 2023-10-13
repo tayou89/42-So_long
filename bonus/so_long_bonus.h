@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 12:35:40 by tayou             #+#    #+#             */
-/*   Updated: 2023/05/14 18:55:00 by tayou            ###   ########.fr       */
+/*   Updated: 2023/05/03 18:39:56 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@
 # define TRUE				1
 # define FALSE				0
 
-# define BUF_SIZE			10
-
 typedef struct s_node
 {
 	char			component;
@@ -54,7 +52,6 @@ typedef struct s_map
 {
 	char	*file_path;
 	char	*extension;
-	char	*line;
 	char	**array;
 	t_node	*linked_list;
 	int		fd;
@@ -154,7 +151,6 @@ typedef struct s_data
 	t_enemy		enemy;
 	t_flag		flag;
 	t_component	component;
-	int			error_number;
 }	t_data;
 
 void	check_map_validation(int argc, char **argv, t_data *game);
@@ -198,16 +194,13 @@ void	count_xy_by_direction(int *x, int *y, int dir);
 void	count_dir_image_number(int *number);
 void	get_enemy_target_location(t_data *game);
 void	put_move_count_string(t_data *game);
-int		count_line_in_string(char *string, int read_size);
-
-void	execute_process_for_open_error(t_data *game);
-void	execute_process_for_read_error(void);
-void	execute_process_for_malloc_array_error(t_data *game);
 
 void	free_mallocated_data(t_data *game);
 void	free_2d_string_array(char **string);
 void	free_linked_list(t_node *list);
 
 int		finish_game_after_free(t_data *game);
+
+void	print_linked_list_map(t_node *map);
 
 #endif

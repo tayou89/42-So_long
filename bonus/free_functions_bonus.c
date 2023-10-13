@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 22:31:17 by tayou             #+#    #+#             */
-/*   Updated: 2023/05/14 19:10:06 by tayou            ###   ########.fr       */
+/*   Updated: 2023/05/02 16:03:31 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	free_mallocated_data(t_data *game)
 
 	array_map = game->map.array;
 	linked_list_map = game->map.linked_list;
-	if (array_map != (void *) 0)
+	if (*array_map != (void *) 0)
 		free_2d_string_array(array_map);
 	if (linked_list_map != (void *) 0)
 		free_linked_list(linked_list_map);
@@ -34,8 +34,6 @@ void	free_2d_string_array(char **string)
 {
 	int	i;
 
-	if (string == (void *) 0)
-		return ;
 	i = 0;
 	while (string[i] != (void *) 0)
 	{

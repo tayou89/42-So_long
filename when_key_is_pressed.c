@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 13:01:44 by tayou             #+#    #+#             */
-/*   Updated: 2023/05/07 19:26:29 by tayou            ###   ########.fr       */
+/*   Updated: 2023/05/03 14:28:09 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	check_movible_by_target_component(t_data *game);
 
 void	when_key_is_pressed(t_data *game)
 {
-	mlx_hook(game->window.ptr, KEY_PRESS, 0, &action_by_key_code, game);
+	mlx_hook(game->window.ptr, KEY_PRESS, 0, action_by_key_code, game);
 }
 
 int	action_by_key_code(int key_code, t_data *game)

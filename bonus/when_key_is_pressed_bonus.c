@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 16:01:24 by tayou             #+#    #+#             */
-/*   Updated: 2023/05/07 19:26:16 by tayou            ###   ########.fr       */
+/*   Updated: 2023/05/07 14:14:24 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		action_by_key_code(int key_code, t_data *game);
 
 void	when_key_is_pressed(t_data *game)
 {
-	mlx_hook(game->window.ptr, KEY_PRESS, 0, &action_by_key_code, game);
+	mlx_hook(game->window.ptr, KEY_PRESS, 0, action_by_key_code, game);
 }
 
 int	action_by_key_code(int key_code, t_data *game)

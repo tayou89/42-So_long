@@ -1,17 +1,4 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/05/12 23:45:30 by tayou             #+#    #+#              #
-#    Updated: 2023/05/14 19:11:17 by tayou            ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME = so_long
-NAME_BONUS = so_long_bonus
 CC = gcc
 CCFLAGS = -Wall -Wextra -Werror
 RM = rm
@@ -32,8 +19,8 @@ SRC_FILE = so_long \
 	  when_key_is_pressed when_click_x_button_on_window \
 	  make_player_move_to_target \
 	  control_node \
-	  utils_1 utils_2 \
-	  finish_game_after_free free_functions handle_error
+	  utils \
+	  finish_game_after_free free_functions
 BONUS_FILE = so_long \
 			check_map_extension \
 			check_map_validation \
@@ -51,12 +38,18 @@ BONUS_FILE = so_long \
 			make_player_move_to_target \
 			control_node \
 			utils_1 utils_2\
-			finish_game_after_free free_functions handle_error
+			finish_game_after_free free_functions
 
 SRC = $(addsuffix .c, $(SRC_FILE))
 SRC_BONUS = $(addprefix bonus/, $(addsuffix _bonus.c, $(BONUS_FILE)))
 OBJ = $(addsuffix .o, $(SRC_FILE))
 OBJ_BONUS = $(addprefix bonus/, $(addsuffix _bonus.o, $(BONUS_FILE)))
+
+ifdef WITH_BONUS
+	OBJ_FILE = $(OBJ_BONUS)
+else
+	OBJ_FILE = $(OBJ)
+endif
 
 all : $(NAME)
 
@@ -67,17 +60,15 @@ clean :
 
 fclean : clean
 	make -C $(LIBFT_DIR) fclean
-	$(RM) $(RMFLAGS) $(NAME) $(NAME_BONUS)
+	$(RM) $(RMFLAGS) $(NAME)
 
 re : fclean all
 
-bonus : $(NAME_BONUS)
+bonus :
+	make WITH_BONUS=1
 
-$(NAME) : $(MLX) $(LIBFT) $(OBJ)
+$(NAME) : $(MLX) $(LIBFT) $(OBJ_FILE)
 	$(CC) $(CCFLAGS) -L./mlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) $^
-
-$(NAME_BONUS) : $(MLX) $(LIBFT) $(OBJ_BONUS)
-	$(CC) $(CCFLAGS) -L./mlx -lmlx -framework OpenGL -framework AppKit -o $(NAME_BONUS) $^
 
 $(MLX) :
 	make -C $(MLX_DIR) all 

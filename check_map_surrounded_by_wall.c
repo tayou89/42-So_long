@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 12:43:35 by tayou             #+#    #+#             */
-/*   Updated: 2023/05/12 22:46:38 by tayou            ###   ########.fr       */
+/*   Updated: 2023/05/03 18:36:26 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	check_map_surrounded_by_wall(t_data *game)
 {
 	char	**map;
 
-	game->error_number = 2;
 	map = game->map.array;
 	if (check_first_line(map[0]) == FALSE
 		|| check_middle_line(map) == FALSE
@@ -33,8 +32,6 @@ int	check_first_line(char *first_line)
 {
 	int	i;
 
-	if (first_line[0] == '\0')
-		return (FALSE);
 	i = 0;
 	while (first_line[i] != '\0')
 	{
@@ -51,7 +48,7 @@ int	check_middle_line(char **map)
 	char	last_character;
 	int		i;
 
-	i = 0;
+	i = 1;
 	while (map[i + 1] != (void *) 0)
 	{
 		first_character = map[i][0];
