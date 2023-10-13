@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 12:35:40 by tayou             #+#    #+#             */
-/*   Updated: 2023/04/24 10:47:31 by tayou            ###   ########.fr       */
+/*   Updated: 2023/04/28 13:22:44 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <time.h>
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
 
@@ -27,6 +28,10 @@
 # define KEY_A				0
 # define KEY_S				1
 # define KEY_D				2
+# define LEFT				0
+# define RIGHT				1
+# define DOWN				2
+# define UP					3
 
 typedef struct s_node
 {
@@ -55,29 +60,32 @@ typedef struct s_data
 	int		exit_count;
 	int		collectible_count;
 	int		player_count;
+	int		enemy_count;
 	int		block_size;
 	int		win_x_size;
 	int		win_y_size;
-	void	*m;
-	void	*w;
+	void	*mlx_ptr;
+	void	*win_ptr;
 	void	*empty;
 	void	*wall;
 	void	*coll;
 	void	*exit;
 	void	*done;
-	void	*player;
-	t_image	p_left[4];
-	t_image	p_right[4];
-	t_image	p_down[4];
-	t_image	p_up[4];
-	t_image	e_left[4];
-	t_image	e_right[4];
-	t_image	e_down[4];
-	t_image	e_up[4];
+	t_image	player[4][4];
+	t_image	enemy[4][4];
 	int		player_x;
 	int		player_y;
+	int		*enemy_x;
+	int		*enemy_y;
+	int		witness;
+	int		enemy_target_x;
+	int		enemy_target_y;
+	int		current_x;
+	int		current_y;
 	int		target_x;
 	int		target_y;
+	int		current_direction;
+	int		enemy_direction;
 	int		component_x;
 	int		component_y;
 	int		move_count;
@@ -101,7 +109,10 @@ void	make_game(t_data *game);
 void	make_initial_game_setting(t_data *game);
 void	get_mlx_win_ptr(t_data *game);
 void	make_map(t_data *game);
+void	get_player_location(t_data *game);
+void	get_enemy_location(t_data *game);
 void	control_player(t_data *game);
+int		make_enemy_on_guard(t_data *game);
 
 void	get_component_image_address(t_data *game);
 void	put_image_to_map(t_data *game);
@@ -110,8 +121,12 @@ void	move_left(t_data *game);
 void	move_right(t_data *game);
 void	move_down(t_data *game);
 void	move_up(t_data *game);
-int		move_by_component(int x, int y, t_image *image, t_data *game);
+int		move_by_component(t_data *game);
 
+void	set_sprite_image_to_left(t_data *game);
+void	set_sprite_image_to_right(t_data *game);
+void	set_sprite_image_to_up(t_data *game);
+void	set_sprite_image_to_down(t_data *game);
 
 t_node	*get_new_node(char c);
 t_node	*add_node_right(t_node *line, t_node *new_node);

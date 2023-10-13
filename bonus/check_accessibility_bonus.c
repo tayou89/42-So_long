@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 22:28:20 by tayou             #+#    #+#             */
-/*   Updated: 2023/04/23 22:28:40 by tayou            ###   ########.fr       */
+/*   Updated: 2023/04/26 12:14:10 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ t_node	*get_accessible_node(t_node *accessible_node)
 int	check_node_accessible(t_node *node)
 {
 	if (node->check_count == 0 && node->accessibility == 'X'
-		&& (node->component == '0' || node->component == 'C'))
+		&& (node->component == '0' || node->component == 'C'
+		|| node->component == 'B'))
 	{
 		node->accessibility = 'O';
 		return (1);

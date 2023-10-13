@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 12:35:40 by tayou             #+#    #+#             */
-/*   Updated: 2023/04/23 19:36:02 by tayou            ###   ########.fr       */
+/*   Updated: 2023/04/24 15:15:41 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,10 @@ void	move_down(t_data *game);
 void	move_up(t_data *game);
 int		move_by_component(int x, int y, char component, t_data *game);
 
+void	set_sprite_iamge_to_left(t_data *game);
+void	set_sprite_iamge_to_right(t_data *game);
+void	set_sprite_iamge_to_down(t_data *game);
+void	set_sprite_iamge_to_up(t_data *game);
 
 t_node	*get_new_node(char c);
 t_node	*add_node_right(t_node *line, t_node *new_node);

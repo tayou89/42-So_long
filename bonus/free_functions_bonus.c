@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 22:31:17 by tayou             #+#    #+#             */
-/*   Updated: 2023/04/23 22:31:24 by tayou            ###   ########.fr       */
+/*   Updated: 2023/04/26 13:39:30 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ void	free_mallocated_data(t_data *game)
 		free_2d_string_array(array_map);
 	if (linked_list_map != (void *) 0)
 		free_linked_list(linked_list_map);
+	if (game->enemy_x != (void *) 0)
+	{
+		free(game->enemy_x);
+		free(game->enemy_y);
+	}
 }
 
 void	free_2d_string_array(char **string)

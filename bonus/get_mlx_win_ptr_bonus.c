@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 22:32:27 by tayou             #+#    #+#             */
-/*   Updated: 2023/04/23 22:32:36 by tayou            ###   ########.fr       */
+/*   Updated: 2023/04/27 15:34:08 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,15 @@ int		get_win_y_size(int map_line_count, int block_size);
 
 void	get_mlx_win_ptr(t_data *game)
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
 	int		win_x_size;
 	int		win_y_size;
 
-	mlx_ptr = mlx_init();
-	game->m = mlx_ptr;
+	game->mlx_ptr = mlx_init();
 	get_window_size(game);
 	win_x_size = game->win_x_size;
 	win_y_size = game->win_y_size;
-	win_ptr = mlx_new_window(mlx_ptr, win_x_size, win_y_size, "so_long");
-	game->w = win_ptr;
+	game->win_ptr = mlx_new_window(\
+			game->mlx_ptr, win_x_size, win_y_size, "so_long");
 }
 
 void	get_window_size(t_data *game)

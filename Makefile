@@ -30,10 +30,12 @@ BONUS_FILE = so_long \
 			check_accessibility \
 			get_array_map get_linked_list_map \
 			make_game \
-			make_initial_game_setting get_mlx_win_ptr make_map \
+			make_initial_game_setting \
+			get_mlx_win_ptr make_map get_player_enemy_location \
 			get_component_image_address put_image_to_map \
 			control_player \
-			move_by_direction move_by_component \
+			move_by_direction move_by_component set_sprite_image \
+			make_enemy_animation \
 			control_node \
 			utils \
 			finish_game_after_free free_functions
@@ -66,10 +68,10 @@ bonus :
 	make WITH_BONUS=1
 
 $(NAME) : $(MLX) $(LIBFT) $(OBJ_FILE)
-	$(CC) $(CCFLAGS) -L./mlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) $^
+	$(CC) $(CCFLAGS) -L./mlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) $^ -g3 -fsanitize=address
 
 $(MLX) :
-	make -C $(MLX_DIR) all
+	make -C $(MLX_DIR) all 
 
 $(LIBFT) : 
 	make bonus -C $(LIBFT_DIR) all

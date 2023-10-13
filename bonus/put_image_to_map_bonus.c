@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 22:33:50 by tayou             #+#    #+#             */
-/*   Updated: 2023/04/23 22:33:56 by tayou            ###   ########.fr       */
+/*   Updated: 2023/04/26 12:42:29 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	apply_component_image(char component, int i, int j, t_data *game)
 	int		x;
 	int		y;
 
-	mlx = game->m;
-	win = game->w;
+	mlx = game->mlx_ptr;
+	win = game->win_ptr;
 	x = j * game->block_size;
 	y = i * game->block_size;
 	mlx_put_image_to_window(mlx, win, game->empty, x, y);
@@ -53,5 +53,7 @@ void	apply_component_image(char component, int i, int j, t_data *game)
 	else if (component == 'E')
 		mlx_put_image_to_window(mlx, win, game->exit, x, y);
 	else if (component == 'P')
-		mlx_put_image_to_window(mlx, win, game->player, x, y);
+		mlx_put_image_to_window(mlx, win, game->player[2][0].image, x, y);
+	else if (component == 'B')
+		mlx_put_image_to_window(mlx, win, game->enemy[2][0].image, x, y);
 }

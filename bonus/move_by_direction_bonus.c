@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 22:33:36 by tayou             #+#    #+#             */
-/*   Updated: 2023/04/24 10:51:59 by tayou            ###   ########.fr       */
+/*   Updated: 2023/04/26 13:31:39 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,12 @@
 
 void	move_left(t_data *game)
 {
-	int		target_x;
-	int		target_y;
-	int		size;
 	int		move_sign;
 
-	size = game->block_size;
-	target_x = (game->player_x - 1) * size;
-	target_y = (game->player_y) * size;
-	game->target_x = target_x;
-	game->target_y = target_y;
-	move_sign = move_by_component(target_x, target_y, game->p_left, game);
+	game->target_x = (game->player_x - 1) * game->block_size;
+	game->target_y = game->current_y;
+	game->current_direction = 0;
+	move_sign = move_by_component(game);
 	if (move_sign == 1)
 	{
 		game->player_x--;
@@ -35,17 +30,12 @@ void	move_left(t_data *game)
 
 void	move_right(t_data *game)
 {
-	int		target_x;
-	int		target_y;
-	int		size;
 	int		move_sign;
 
-	size = game->block_size;
-	target_x = (game->player_x + 1) * size;
-	target_y = (game->player_y) * size;
-	game->target_x = target_x;
-	game->target_y = target_y;
-	move_sign = move_by_component(target_x, target_y, game->p_right, game);
+	game->target_x = (game->player_x + 1) * game->block_size;
+	game->target_y = game->current_y;
+	game->current_direction = 1;
+	move_sign = move_by_component(game);
 	if (move_sign == 1)
 	{
 		game->player_x++;
@@ -56,17 +46,12 @@ void	move_right(t_data *game)
 
 void	move_down(t_data *game)
 {
-	int		target_x;
-	int		target_y;
-	int		size;
 	int		move_sign;
 
-	size = game->block_size;
-	target_x = (game->player_x) * size;
-	target_y = (game->player_y + 1) * size;
-	game->target_x = target_x;
-	game->target_y = target_y;
-	move_sign = move_by_component(target_x, target_y, game->p_down, game);
+	game->target_x = game->current_x;
+	game->target_y = (game->player_y + 1) * game->block_size;
+	game->current_direction = 2;
+	move_sign = move_by_component(game);
 	if (move_sign == 1)
 	{
 		game->player_y++;
@@ -77,17 +62,12 @@ void	move_down(t_data *game)
 
 void	move_up(t_data *game)
 {
-	int		target_x;
-	int		target_y;
-	int		size;
 	int		move_sign;
 
-	size = game->block_size;
-	target_x = (game->player_x) * size;
-	target_y = (game->player_y - 1) * size;
-	game->target_x = target_x;
-	game->target_y = target_y;
-	move_sign = move_by_component(target_x, target_y, game->p_up, game);
+	game->target_x = game->current_x;
+	game->target_y = (game->player_y - 1) * game->block_size;
+	game->current_direction = 3;
+	move_sign = move_by_component(game);
 	if (move_sign == 1)
 	{
 		game->player_y--;
