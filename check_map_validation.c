@@ -6,12 +6,13 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 12:42:01 by tayou             #+#    #+#             */
-/*   Updated: 2023/05/10 20:17:10 by tayou            ###   ########.fr       */
+/*   Updated: 2023/05/16 21:40:14 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+void	initialize_mallocible_data(t_data *game);
 void	print_error_message(t_data *game);
 
 void	check_map_validation(int argc, char **argv, t_data *game)
@@ -23,8 +24,8 @@ void	check_map_validation(int argc, char **argv, t_data *game)
 	}
 	game->map.file_path = argv[1];
 	check_map_extension(game);
+	initialize_mallocible_data(game);
 	get_array_map(game);
-	game->map.linked_list = (void *) 0;
 	if (check_map_is_rectangular(game) == FALSE
 		|| check_map_surrounded_by_wall(game) == FALSE
 		|| check_map_component(game) == FALSE
@@ -34,6 +35,13 @@ void	check_map_validation(int argc, char **argv, t_data *game)
 		free_mallocated_data(game);
 		exit(2);
 	}
+}
+
+void	initialize_mallocible_data(t_data *game)
+{
+	game->map.line = (void *) 0;
+	game->map.array = (void *) 0;
+	game->map.linked_list = (void *) 0;
 }
 
 void	print_error_message(t_data *game)

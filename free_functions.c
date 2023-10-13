@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 23:01:00 by tayou             #+#    #+#             */
-/*   Updated: 2023/05/03 15:52:28 by tayou            ###   ########.fr       */
+/*   Updated: 2023/05/14 19:05:22 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,13 @@ void	free_2d_string_array(char **string)
 {
 	int	i;
 
+	if (string == (void *) 0)
+		return ;
 	i = 0;
 	while (string[i] != (void *) 0)
 	{
 		free(string[i]);
+		string[i] = (void *) 0;
 		i++;
 	}
 	free(string);

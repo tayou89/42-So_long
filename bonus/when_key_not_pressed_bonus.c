@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 11:48:12 by tayou             #+#    #+#             */
-/*   Updated: 2023/05/07 19:53:32 by tayou            ###   ########.fr       */
+/*   Updated: 2023/05/12 16:07:15 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void	move_by_target_component(t_data *game)
 			finish_game_after_free(game);
 			exit(0);
 		}
+		game->flag.player_move = FALSE;
+		game->flag.player_move_complete = TRUE;
 	}
 	else
 	{

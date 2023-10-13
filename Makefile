@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/05/12 23:45:30 by tayou             #+#    #+#              #
+#    Updated: 2023/05/14 19:11:17 by tayou            ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = so_long
 NAME_BONUS = so_long_bonus
 CC = gcc
@@ -20,8 +32,8 @@ SRC_FILE = so_long \
 	  when_key_is_pressed when_click_x_button_on_window \
 	  make_player_move_to_target \
 	  control_node \
-	  utils \
-	  finish_game_after_free free_functions
+	  utils_1 utils_2 \
+	  finish_game_after_free free_functions handle_error
 BONUS_FILE = so_long \
 			check_map_extension \
 			check_map_validation \
@@ -39,7 +51,7 @@ BONUS_FILE = so_long \
 			make_player_move_to_target \
 			control_node \
 			utils_1 utils_2\
-			finish_game_after_free free_functions
+			finish_game_after_free free_functions handle_error
 
 SRC = $(addsuffix .c, $(SRC_FILE))
 SRC_BONUS = $(addprefix bonus/, $(addsuffix _bonus.c, $(BONUS_FILE)))

@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 12:35:40 by tayou             #+#    #+#             */
-/*   Updated: 2023/05/10 20:52:16 by tayou            ###   ########.fr       */
+/*   Updated: 2023/05/14 18:49:31 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@
 # define TRUE				1
 # define FALSE				0
 
+# define BUF_SIZE			10
+
 typedef struct s_node
 {
 	char			component;
@@ -54,6 +56,7 @@ typedef struct s_map
 	char	*file_path;
 	char	*extension;
 	char	**array;
+	char	*line;
 	t_node	*linked_list;
 	int		fd;
 	int		line_count;
@@ -159,6 +162,11 @@ void	switch_newline_to_null(char *string);
 char	get_last_character(char *string);
 char	*get_last_line(char **string);
 void	get_component_location(char component, t_data *game);
+int		count_line_in_string(char *string, int read_size);
+
+void	execute_process_for_open_error(t_data *game);
+void	execute_process_for_read_error(void);
+void	execute_process_for_malloc_array_error(t_data *game);
 
 void	free_mallocated_data(t_data *game);
 void	free_2d_string_array(char **string);

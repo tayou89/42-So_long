@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/16 23:43:07 by tayou             #+#    #+#             */
-/*   Updated: 2023/05/12 16:19:14 by tayou            ###   ########.fr       */
+/*   Created: 2023/05/12 23:26:01 by tayou             #+#    #+#             */
+/*   Updated: 2023/05/14 18:44:00 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "so_long.h"
 
-char	*ft_strdup(const char *s1)
+int	count_line_in_string(char *string, int read_size)
 {
-	char	*copy_s1;
-	int		s1_size;
-	int		i;
+	int	count;
+	int	i;
 
-	s1_size = ft_strlen(s1);
-	copy_s1 = (char *) malloc(sizeof(char) * s1_size + 1);
-	if (copy_s1 == 0)
+	if (string == (void *) 0)
 		return (0);
+	count = 0;
 	i = 0;
-	while (s1[i] != '\0')
+	while (i < read_size)
 	{
-		copy_s1[i] = s1[i];
+		if (string[i] == '\n' || string[i] == '\0')
+			count++;
 		i++;
 	}
-	copy_s1[i] = '\0';
-	return (copy_s1);
+	return (count);
 }
