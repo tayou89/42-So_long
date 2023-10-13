@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   control_player.c                                   :+:      :+:    :+:   */
+/*   control_player_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/22 10:51:11 by tayou             #+#    #+#             */
-/*   Updated: 2023/04/23 18:48:05 by tayou            ###   ########.fr       */
+/*   Created: 2023/04/23 22:30:50 by tayou             #+#    #+#             */
+/*   Updated: 2023/04/23 22:30:57 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 int		key_press(int key_code, t_data *game);
 void	make_exit_open(t_data *game);
 
 void	control_player(t_data *game)
 {
-	mlx_hook(game->win_ptr, KEY_PRESS, 0, &key_press, game);
-	mlx_hook(game->win_ptr, EVENT_ON_DESTROY, 0, &finish_game_after_free, game);
+	mlx_hook(game->w, KEY_PRESS, 0, &key_press, game);
+	mlx_hook(game->w, EVENT_ON_DESTROY, 0, &finish_game_after_free, game);
 }
 
 int	key_press(int key_code, t_data *game)
@@ -28,8 +28,8 @@ int	key_press(int key_code, t_data *game)
 	void	*win;
 
 	map = game->array_map;
-	mlx = game->mlx_ptr;
-	win = game->win_ptr;
+	mlx = game->m;
+	win = game->w;
 	if (key_code == KEY_A)
 		move_left(game);
 	else if (key_code == KEY_D)
@@ -52,8 +52,8 @@ void	make_exit_open(t_data *game)
 	int		x;
 	int		y;
 
-	mlx = game->mlx_ptr;
-	win = game->win_ptr;
+	mlx = game->m;
+	win = game->w;
 	get_component_location('E', game);
 	x = game->component_x * game->block_size;
 	y = game->component_y * game->block_size;

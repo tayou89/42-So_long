@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put_image_to_map.c                                 :+:      :+:    :+:   */
+/*   put_image_to_map_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/21 23:31:23 by tayou             #+#    #+#             */
-/*   Updated: 2023/04/23 15:51:05 by tayou            ###   ########.fr       */
+/*   Created: 2023/04/23 22:33:50 by tayou             #+#    #+#             */
+/*   Updated: 2023/04/23 22:33:56 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	apply_component_image(char component, int i, int j, t_data *game);
 
@@ -41,8 +41,8 @@ void	apply_component_image(char component, int i, int j, t_data *game)
 	int		x;
 	int		y;
 
-	mlx = game->mlx_ptr;
-	win = game->win_ptr;
+	mlx = game->m;
+	win = game->w;
 	x = j * game->block_size;
 	y = i * game->block_size;
 	mlx_put_image_to_window(mlx, win, game->empty, x, y);

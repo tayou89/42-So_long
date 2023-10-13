@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map_component.c                              :+:      :+:    :+:   */
+/*   check_map_component_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/12 15:14:04 by tayou             #+#    #+#             */
-/*   Updated: 2023/04/24 10:51:13 by tayou            ###   ########.fr       */
+/*   Created: 2023/04/23 22:28:54 by tayou             #+#    #+#             */
+/*   Updated: 2023/04/23 22:29:09 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 int	check_if_has_other_character(char **map);
 int	get_exit_count(char **map);

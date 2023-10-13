@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map_validation.c                             :+:      :+:    :+:   */
+/*   check_map_validation_bonus.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/12 14:10:20 by tayou             #+#    #+#             */
-/*   Updated: 2023/04/23 15:51:28 by tayou            ###   ########.fr       */
+/*   Created: 2023/04/23 22:30:13 by tayou             #+#    #+#             */
+/*   Updated: 2023/04/23 22:30:20 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	check_map_validation(int argc, char **argv, t_data *game)
 {

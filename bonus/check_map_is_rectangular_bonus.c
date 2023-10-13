@@ -1,19 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   make_map.c                                         :+:      :+:    :+:   */
+/*   check_map_is_rectangular_bonus.c                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/21 00:08:26 by tayou             #+#    #+#             */
-/*   Updated: 2023/04/23 15:50:36 by tayou            ###   ########.fr       */
+/*   Created: 2023/04/23 22:29:47 by tayou             #+#    #+#             */
+/*   Updated: 2023/04/23 22:29:55 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
-void	make_map(t_data *game)
+int	check_map_is_rectangular(char **map)
 {
-	get_component_image_address(game);
-	put_image_to_map(game);
+	int		first_line_size;
+	int		next_line_size;
+	int		i;
+
+	first_line_size = ft_strlen(map[0]);
+	if (first_line_size == 0)
+		return (1);
+	i = 0;
+	while (map[i] != (void *) 0)
+	{
+		next_line_size = ft_strlen(map[i]);
+		if (first_line_size != next_line_size)
+			return (1);
+		i++;
+	}
+	return (0);
 }

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_accessibility.c                              :+:      :+:    :+:   */
+/*   check_accessibility_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/16 23:05:19 by tayou             #+#    #+#             */
-/*   Updated: 2023/04/23 17:42:10 by tayou            ###   ########.fr       */
+/*   Created: 2023/04/23 22:28:20 by tayou             #+#    #+#             */
+/*   Updated: 2023/04/23 22:28:40 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 t_node	*get_accessible_node(t_node *accessible_node);
 int		check_node_accessible(t_node *node);

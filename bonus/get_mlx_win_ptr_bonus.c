@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_mlx_win_ptr.c                                  :+:      :+:    :+:   */
+/*   get_mlx_win_ptr_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/21 00:03:16 by tayou             #+#    #+#             */
-/*   Updated: 2023/04/23 15:59:54 by tayou            ###   ########.fr       */
+/*   Created: 2023/04/23 22:32:27 by tayou             #+#    #+#             */
+/*   Updated: 2023/04/23 22:32:36 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	get_window_size(t_data *game);
 int		get_win_x_size(char **map, int block_size);
@@ -24,12 +24,12 @@ void	get_mlx_win_ptr(t_data *game)
 	int		win_y_size;
 
 	mlx_ptr = mlx_init();
-	game->mlx_ptr = mlx_ptr;
+	game->m = mlx_ptr;
 	get_window_size(game);
 	win_x_size = game->win_x_size;
 	win_y_size = game->win_y_size;
 	win_ptr = mlx_new_window(mlx_ptr, win_x_size, win_y_size, "so_long");
-	game->win_ptr = win_ptr;
+	game->w = win_ptr;
 }
 
 void	get_window_size(t_data *game)

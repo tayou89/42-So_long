@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   make_map.c                                         :+:      :+:    :+:   */
+/*   finish_game_after_free.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/21 00:08:26 by tayou             #+#    #+#             */
-/*   Updated: 2023/04/23 15:50:36 by tayou            ###   ########.fr       */
+/*   Created: 2023/04/23 14:31:24 by tayou             #+#    #+#             */
+/*   Updated: 2023/04/23 16:35:43 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	make_map(t_data *game)
+int	finish_game_after_free(t_data *game)
 {
-	get_component_image_address(game);
-	put_image_to_map(game);
+	free_mallocated_data(game);
+	ft_printf("Thank You For Playing!\n");
+	exit(0);
+	return (0);
 }
