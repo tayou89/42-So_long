@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 12:35:40 by tayou             #+#    #+#             */
-/*   Updated: 2023/05/03 18:39:56 by tayou            ###   ########.fr       */
+/*   Updated: 2023/05/10 20:52:42 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,7 @@ typedef struct s_data
 	t_enemy		enemy;
 	t_flag		flag;
 	t_component	component;
+	int			error_number;
 }	t_data;
 
 void	check_map_validation(int argc, char **argv, t_data *game);
@@ -200,7 +201,5 @@ void	free_2d_string_array(char **string);
 void	free_linked_list(t_node *list);
 
 int		finish_game_after_free(t_data *game);
-
-void	print_linked_list_map(t_node *map);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 22:28:54 by tayou             #+#    #+#             */
-/*   Updated: 2023/05/03 18:40:44 by tayou            ###   ########.fr       */
+/*   Updated: 2023/05/07 19:07:37 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int		check_if_has_other_character(t_data *game);
 
 int	check_map_component(t_data *game)
 {
+	game->error_number = 3;
 	initialize_component_count(game);
 	get_component_count(game);
 	if (game->count.exit != 1 || game->count.collectible < 1

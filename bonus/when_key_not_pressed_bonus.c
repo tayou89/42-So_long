@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 11:48:12 by tayou             #+#    #+#             */
-/*   Updated: 2023/05/07 14:27:00 by tayou            ###   ########.fr       */
+/*   Updated: 2023/05/07 19:53:32 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	when_key_not_pressed(t_data *game)
 int	functions_when_key_not_pressed(t_data *game)
 {
 	make_enemy_on_guard(game);
-	if (game->flag.player_move == TRUE)
+	if (game->flag.player_move == TRUE && game->flag.find_invader == FALSE)
 	{
 		get_target_component(game);
 		move_by_target_component(game);
@@ -60,9 +60,7 @@ void	move_by_target_component(t_data *game)
 			exit(0);
 		}
 	}
-	else if (game->component.target == game->component.wall
-		|| game->component.target == game->component.enemy
-		|| game->flag.find_invader == TRUE)
+	else
 	{
 		game->flag.player_move = FALSE;
 		game->flag.player_move_complete = TRUE;

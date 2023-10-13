@@ -6,16 +6,21 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 12:42:01 by tayou             #+#    #+#             */
-/*   Updated: 2023/05/03 15:52:59 by tayou            ###   ########.fr       */
+/*   Updated: 2023/05/10 20:17:10 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+void	print_error_message(t_data *game);
+
 void	check_map_validation(int argc, char **argv, t_data *game)
 {
 	if (argc != 2)
+	{
+		ft_printf("Error.\nWrong Argument.\n");
 		exit(0);
+	}
 	game->map.file_path = argv[1];
 	check_map_extension(game);
 	get_array_map(game);
@@ -25,8 +30,22 @@ void	check_map_validation(int argc, char **argv, t_data *game)
 		|| check_map_component(game) == FALSE
 		|| check_map_has_valid_path(game) == FALSE)
 	{
-		ft_printf("Error\nMap is invalid.\n");
+		print_error_message(game);
 		free_mallocated_data(game);
 		exit(2);
 	}
+}
+
+void	print_error_message(t_data *game)
+{
+	ft_printf("Error\n");
+	ft_printf("Map is invalid.\n");
+	if (game->error_number == 1)
+		ft_printf("Map is not rectangular.\n");
+	else if (game->error_number == 2)
+		ft_printf("Map is not surrounded by wall.\n");
+	else if (game->error_number == 3)
+		ft_printf("Map has problem of component.\n");
+	else if (game->error_number == 4)
+		ft_printf("Map does not have valid path.\n");
 }

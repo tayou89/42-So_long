@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 12:35:40 by tayou             #+#    #+#             */
-/*   Updated: 2023/05/03 14:36:03 by tayou            ###   ########.fr       */
+/*   Updated: 2023/05/10 20:52:16 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,7 @@ typedef struct s_data
 	t_player	player;
 	t_component	component;
 	t_flag		flag;
+	int			error_number;
 }	t_data;
 
 void	check_map_validation(int argc, char **argv, t_data *game);

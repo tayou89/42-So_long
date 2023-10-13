@@ -1,4 +1,5 @@
 NAME = so_long
+NAME_BONUS = so_long_bonus
 CC = gcc
 CCFLAGS = -Wall -Wextra -Werror
 RM = rm
@@ -45,12 +46,6 @@ SRC_BONUS = $(addprefix bonus/, $(addsuffix _bonus.c, $(BONUS_FILE)))
 OBJ = $(addsuffix .o, $(SRC_FILE))
 OBJ_BONUS = $(addprefix bonus/, $(addsuffix _bonus.o, $(BONUS_FILE)))
 
-ifdef WITH_BONUS
-	OBJ_FILE = $(OBJ_BONUS)
-else
-	OBJ_FILE = $(OBJ)
-endif
-
 all : $(NAME)
 
 clean : 
@@ -60,15 +55,17 @@ clean :
 
 fclean : clean
 	make -C $(LIBFT_DIR) fclean
-	$(RM) $(RMFLAGS) $(NAME)
+	$(RM) $(RMFLAGS) $(NAME) $(NAME_BONUS)
 
 re : fclean all
 
-bonus :
-	make WITH_BONUS=1
+bonus : $(NAME_BONUS)
 
-$(NAME) : $(MLX) $(LIBFT) $(OBJ_FILE)
+$(NAME) : $(MLX) $(LIBFT) $(OBJ)
 	$(CC) $(CCFLAGS) -L./mlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) $^
+
+$(NAME_BONUS) : $(MLX) $(LIBFT) $(OBJ_BONUS)
+	$(CC) $(CCFLAGS) -L./mlx -lmlx -framework OpenGL -framework AppKit -o $(NAME_BONUS) $^
 
 $(MLX) :
 	make -C $(MLX_DIR) all 
