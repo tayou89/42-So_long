@@ -6,7 +6,14 @@ RMFLAGS = -rf
 LIBFT = ./libft/libft.a
 LIBFT_DIR = ./libft
 SRC = so_long.c \
-	  free_2d_string_array.c
+	  check_map_extension.c \
+	  check_map_validation.c \
+	  check_map_is_rectangular.c check_map_surrounded_by_wall.c \
+	  check_map_component.c check_map_has_valid_path.c \
+	  get_map.c get_access_check_map.c \
+	  control_node.c \
+	  utils.c \
+	  free_functions.c
 OBJ = $(SRC:.c=.o)
 
 all : $(NAME)
@@ -22,7 +29,7 @@ fclean : clean
 re : fclean all
 
 $(NAME) : $(LIBFT) $(OBJ)
-	$(CC) $(CCFLAGS) -L./mlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) $^
+	$(CC) $(CCFLAGS) -L./mlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) $^ -g -fsanitize=address
 
 $(LIBFT) : 
 	make bonus -C $(LIBFT_DIR) all
