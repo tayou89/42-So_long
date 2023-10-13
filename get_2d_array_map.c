@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 19:07:23 by tayou             #+#    #+#             */
-/*   Updated: 2023/04/15 19:07:40 by tayou            ###   ########.fr       */
+/*   Updated: 2023/04/16 15:13:09 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,4 @@ static char	**fill_map(char **map, int fd)
 		line = get_next_line(fd);
 	}
 	return(map);
-
+}

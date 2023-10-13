@@ -10,10 +10,12 @@ SRC = so_long.c \
 	  check_map_validation.c \
 	  check_map_is_rectangular.c check_map_surrounded_by_wall.c \
 	  check_map_component.c check_map_has_valid_path.c \
-	  get_map.c get_access_check_map.c \
+	  check_accessibility.c \
+	  get_2d_array_map.c get_linked_list_map.c \
 	  control_node.c \
 	  utils.c \
-	  free_functions.c
+	  free_functions.c \
+	  print_linked_list_map.c
 OBJ = $(SRC:.c=.o)
 
 all : $(NAME)

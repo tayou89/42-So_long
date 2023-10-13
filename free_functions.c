@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 23:01:00 by tayou             #+#    #+#             */
-/*   Updated: 2023/04/15 23:09:54 by tayou            ###   ########.fr       */
+/*   Updated: 2023/04/16 16:25:32 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,24 @@ void	free_2d_string_array(char **string)
 	free(string);
 }
 
-void	free_when_get_new_node_fail(t_node *line)
+void	free_linked_list(t_node *list)
 {
 	t_node	*list_head;
+	t_node	*next_list_head;
 
-	if (line == (void *) 0)
+	if (list == (void *) 0)
 		return ;
-	while (line != (void *) 0)
+	while (list != (void *) 0)
 	{
-		line_head = line;
-		if (line->right != (void *) 0 && line->left == (void *) 0)
-			line = line->right;
-		else if (line->right == (void *) 0 && line->left != (void *) 0)
-			line = line->left;
-		else if (line->right == (void *) 0 && line->left == (void *) 0)
-			line = line->down;
-		free(line_head);
+		next_list_head = list->down;
+		while (list != (void *) 0)
+		{
+			list_head = list;
+			list = list->right;
+			free(list_head);
+			list_head = (void *) 0;
+		}
+		list = next_list_head;
 	}
-	line = (void *) 0;
+	list = (void *) 0;
 }
