@@ -6,11 +6,24 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 23:01:00 by tayou             #+#    #+#             */
-/*   Updated: 2023/04/16 16:25:32 by tayou            ###   ########.fr       */
+/*   Updated: 2023/04/20 23:17:35 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	free_mallocated_data(t_data *game)
+{
+	char	**array_map;
+	t_node	*linked_list_map;
+
+	array_map = game->array_map;
+	linked_list_map = game->linked_list_map;
+	if (*array_map != (void *) 0)
+		free_2d_string_array(array_map);
+	if (linked_list_map != (void *) 0)
+		free_linked_list(linked_list_map);
+}
 
 void	free_2d_string_array(char **string)
 {

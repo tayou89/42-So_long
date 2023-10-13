@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:33:37 by tayou             #+#    #+#             */
-/*   Updated: 2023/04/16 23:23:30 by tayou            ###   ########.fr       */
+/*   Updated: 2023/04/20 21:50:48 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	check_c_and_e_are_accessible(t_node *map);
 int	check_accessible(t_node *check_node);
 int	get_accessible_count(t_node *check_node);
 
-int	check_map_has_valid_path(char **map)
+int	check_map_has_valid_path(char **map, t_data *game)
 {
 	t_node	*linked_list_map;
 
@@ -27,9 +27,9 @@ int	check_map_has_valid_path(char **map)
 		exit(1);
 	}
 	linked_list_map = check_accessibility(linked_list_map);
+	game->linked_list_map = linked_list_map;
 	if (check_c_and_e_are_accessible(linked_list_map) == 1)
 		return (1);
-	free_linked_list(linked_list_map);
 	return (0);
 }
 

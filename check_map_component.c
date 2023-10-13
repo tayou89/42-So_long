@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:14:04 by tayou             #+#    #+#             */
-/*   Updated: 2023/04/14 16:01:50 by tayou            ###   ########.fr       */
+/*   Updated: 2023/04/20 21:48:50 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,17 @@
 int	check_if_has_other_character(char **map);
 int	get_exit_count(char **map);
 int	get_collectible_count(char **map);
-int	get_starting_count(char **map);
+int	get_player_count(char **map);
 
-int	check_map_component(char **map)
+int	check_map_component(char **map, t_data *game)
 {
-	int	exit_count;
-	int	collectible_count;
-	int	starting_count;
-
 	if (check_if_has_other_character(map) == 1)
 		return (1);
-	exit_count = get_exit_count(map);
-	collectible_count = get_collectible_count(map);
-	starting_count = get_starting_count(map);
-	if (exit_count != 1 || collectible_count < 1 || starting_count != 1)
+	game->exit_count = get_exit_count(map);
+	game->collectible_count = get_collectible_count(map);
+	game->player_count = get_player_count(map);
+	if (game->exit_count != 1 || game->collectible_count < 1
+		|| game->player_count != 1)
 		return (1);
 	else
 		return (0);
@@ -82,28 +79,28 @@ int	get_collectible_count(char **map)
 	return (collectible_count);
 }
 
-int	get_starting_count(char **map)
+int	get_player_count(char **map)
 {
-	int		starting_count;
-	char	starting_character;
+	int		player_count;
+	char	player_character;
 	int		i;
 	int		j;
 
-	starting_count = 0;
-	starting_character = 'P';
+	player_count = 0;
+	player_character = 'P';
 	i = 0;
 	while (map[i] != (void *) 0)
 	{
 		j = 0;
 		while (map[i][j] != '\0')
 		{
-			if (map[i][j] == starting_character)
-				starting_count++;
+			if (map[i][j] == player_character)
+				player_count++;
 			j++;
 		}
 		i++;
 	}
-	return (starting_count);
+	return (player_count);
 }
 
 int	check_if_has_other_character(char **map)

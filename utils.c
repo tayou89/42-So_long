@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 12:42:21 by tayou             #+#    #+#             */
-/*   Updated: 2023/04/15 17:51:09 by tayou            ###   ########.fr       */
+/*   Updated: 2023/04/22 21:28:11 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,29 @@ char	*get_last_line(char **string)
 	while (string[i + 1] != (void *) 0)
 		i++;
 	return (string[i]);
+}
+
+void	get_player_location(t_data *game)
+{
+	char	**map;
+	int		i;
+	int		j;
+
+	map = game->array_map;
+	i = 0;
+	while (map[i] != (void *) 0)
+	{
+		j = 0;
+		while (map[i][j] != '\0')
+		{
+			if (map[i][j] == 'P')
+			{
+				game->player_x = j;
+				game->player_y = i;
+				return ;
+			}
+			j++;
+		}
+		i++;
+	}
 }

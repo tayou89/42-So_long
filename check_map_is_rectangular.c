@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 14:13:16 by tayou             #+#    #+#             */
-/*   Updated: 2023/04/14 22:29:18 by tayou            ###   ########.fr       */
+/*   Updated: 2023/04/20 21:35:38 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	check_map_is_rectangular(char **map)
 {
-	int	first_line_size;
-	int	next_line_size;
-	int	i;
+	int		first_line_size;
+	int		next_line_size;
+	int		i;
 
 	first_line_size = ft_strlen(map[0]);
 	if (first_line_size == 0)

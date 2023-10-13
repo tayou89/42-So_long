@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_2d_array_map.c                                 :+:      :+:    :+:   */
+/*   get_array_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/15 19:07:23 by tayou             #+#    #+#             */
-/*   Updated: 2023/04/16 15:13:09 by tayou            ###   ########.fr       */
+/*   Created: 2023/04/20 23:18:31 by tayou             #+#    #+#             */
+/*   Updated: 2023/04/20 23:18:43 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,23 @@ static int	get_line_count(int fd);
 static char	**malloc_map(int line_count);
 static char	**fill_map(char **map, int fd);
 
-char	**get_2d_array_map(char *map_file_name)
+char	**get_array_map(char *map_file_path, t_data *game)
 {
 	char	**map;
-	int		fd;
-	int		line_count;
 
-	fd = get_fd(map_file_name);
-	line_count = get_line_count(fd);
-	map = malloc_map(line_count);
-	fd = get_fd(map_file_name);
-	map = fill_map(map, fd);
+	game->fd = get_fd(map_file_path);
+	game->map_line_count = get_line_count(game->fd);
+	map = malloc_map(game->map_line_count);
+	game->fd = get_fd(map_file_path);
+	map = fill_map(map, game->fd);
 	return (map);
 }
 
-static int	get_fd(char	*map_file_name)
+static int	get_fd(char	*map_file_path)
 {
 	int	fd;
 
-	fd = open(map_file_name, O_RDONLY);
+	fd = open(map_file_path, O_RDONLY);
 	if (fd < 0)
 		exit(0);
 	return (fd);

@@ -11,7 +11,12 @@ SRC = so_long.c \
 	  check_map_is_rectangular.c check_map_surrounded_by_wall.c \
 	  check_map_component.c check_map_has_valid_path.c \
 	  check_accessibility.c \
-	  get_2d_array_map.c get_linked_list_map.c \
+	  get_array_map.c get_linked_list_map.c \
+	  make_game.c \
+	  get_mlx_win_ptr.c make_map.c \
+	  get_component_image_address.c put_image_to_map.c \
+	  control_player.c \
+	  movement.c \
 	  control_node.c \
 	  utils.c \
 	  free_functions.c \
@@ -31,7 +36,7 @@ fclean : clean
 re : fclean all
 
 $(NAME) : $(LIBFT) $(OBJ)
-	$(CC) $(CCFLAGS) -L./mlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) $^ -g -fsanitize=address
+	$(CC) $(CCFLAGS) -L./mlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) $^
 
 $(LIBFT) : 
 	make bonus -C $(LIBFT_DIR) all

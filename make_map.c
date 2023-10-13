@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   make_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/30 22:22:33 by tayou             #+#    #+#             */
-/*   Updated: 2023/04/21 14:42:26 by tayou            ###   ########.fr       */
+/*   Created: 2023/04/21 00:08:26 by tayou             #+#    #+#             */
+/*   Updated: 2023/04/21 23:54:28 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(int argc, char **argv)
+void	make_map(t_data *game)
 {
-	t_data	game;
-
-	check_map_validation(argc, argv, &game);
-	make_game(&game);
-	return (0);
+	get_component_image_address(game);
+	put_image_to_map(game);
 }
