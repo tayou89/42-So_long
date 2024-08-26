@@ -16,7 +16,7 @@ NAME_BONUS = so_long_bonus
 
 # Commands for Compilation
 GCC = gcc
-GCC_FLAGS = -Wall -Wextra -Werror
+GCC_FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 RM = rm
 RM_FLAGS = -rf
 
@@ -31,7 +31,7 @@ MINILIBX_PATH = minilibx/
 
 # Exterior Library
 LIBFT = $(LIBFT_PATH)libft.a
-MINILIBX = $(MINILIBX_PATH)libmlx.a
+MINILIBX = $(MINILIBX_PATH)libmlx.dylib
 
 
 # Source Names
@@ -94,7 +94,12 @@ $(MINILIBX) :
 $(LIBFT) : 
 	make bonus -C $(LIBFT_PATH) all
 
-%.o : %.c
+$(OBJECT_PATH)$(MANDATORY_PATH)%.o: $(SOURCE_PATH)$(MANDATORY_PATH)%.c
+	mkdir -p $(dir $@)
+	$(GCC) $(GCC_FLAGS) -I$(HEADER_PATH) -o $@ -c $<
+
+$(OBJECT_PATH)$(BONUS_PATH)%.o: $(SOURCE_PATH)$(BONUS_PATH)%.c
+	mkdir -p $(dir $@)
 	$(GCC) $(GCC_FLAGS) -I$(HEADER_PATH) -o $@ -c $<
 
 clean : 

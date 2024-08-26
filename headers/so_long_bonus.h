@@ -16,8 +16,8 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include "../libft/libft.h"
-# include "../mlx/mlx.h"
+# include "libft.h"
+# include "mlx.h"
 
 # define KEY_PRESS			2
 # define KEY_RELEASE		3
