@@ -1,5 +1,7 @@
 # So Long
 
+![Game Shot](https://github.com/user-attachments/assets/919f4d1c-6140-465d-a803-57299750a24c)
+
 ## Description
 
 So Long is a simple 2D game project developed as part of the 42 school curriculum. In this game, a player navigates through a map, collecting items and reaching the exit while avoiding obstacles.
