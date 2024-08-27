@@ -16,7 +16,7 @@ NAME_BONUS = so_long_bonus
 
 # Commands for Compilation
 GCC = gcc
-GCC_FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+GCC_FLAGS = -Wall -Wextra -Werror 
 RM = rm
 RM_FLAGS = -rf
 
@@ -31,7 +31,7 @@ MINILIBX_PATH = minilibx/
 
 # Exterior Library
 LIBFT = $(LIBFT_PATH)libft.a
-MINILIBX = $(MINILIBX_PATH)libmlx.dylib
+MINILIBX = $(MINILIBX_PATH)libmlx.a
 
 
 # Source Names
@@ -85,7 +85,7 @@ $(NAME) : $(MINILIBX) $(LIBFT) $(MANDATORY_OBJECTS)
 
 bonus : $(NAME_BONUS)
 
-$(NAME_BONUS) : $(MINILIBX) $(LIBFT) $(OBJ_BONUS)
+$(NAME_BONUS) : $(MINILIBX) $(LIBFT) $(BONUS_OBJECTS)
 	$(GCC) $(GCC_FLAGS) -L$(MINILIBX_PATH) -lmlx -framework OpenGL -framework AppKit -o $(NAME_BONUS) $^
 
 $(MINILIBX) :
